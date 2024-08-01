@@ -35,11 +35,3 @@ def provided_chord_holds ( time_gaps = 1.0 , wait_for_input = False):
         rand_chord = random.choice(chords)
         print( rand_chord, " chord" )
         
-provided_chord_holds(2, True)
-
-'''
-TODO: build main, to take in command args
-for duration of wait hold times, and if there should be button input to continue"
-'''
-
-# def main():
