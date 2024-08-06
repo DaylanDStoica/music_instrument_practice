@@ -15,7 +15,9 @@ TODO: develop GUI
 import my_gui_module as gui
 def main():
     # guitar.provided_chord_holds(2, True)
-    gui.create_window()
+    # gui.create_window()
+    MyWindow = gui.MyWindowClass()
+    MyWindow.create_window()
 
 
 main()
