@@ -12,20 +12,10 @@ for duration of wait hold times, and if there should be button input to continue
 TODO: develop GUI 
 '''
 
-import tkinter as tk
-def create_window():
-    # window = tk.Tk()
-    # window.title("Hello World")
-    root = tk.Tk()
-    root.mainloop()
-    root.minsize(200, 200)
-    root.maxsize(500,500)
-    root.geometry("300x300+100+100")
-
-
+import gui_module as gui
 def main():
     # guitar.provided_chord_holds(2, True)
-    create_window()
+    gui.create_window()
 
 
 main()
