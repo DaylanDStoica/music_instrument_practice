@@ -18,6 +18,7 @@ def main():
     # gui.create_window()
     MyWindow = gui.MyWindowClass()
     MyWindow.create_window()
+    MyWindow.display_chord()
 
 
 main()

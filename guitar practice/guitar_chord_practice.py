@@ -35,3 +35,18 @@ def provided_chord_holds ( time_gaps = 1.0 , wait_for_input = False):
         rand_chord = random.choice(chords)
         print( rand_chord, " chord" )
         
+def gui_provided_chord_holds ( time_gaps = 1.0 , wait_for_input = False):
+    # every X seconds (time_gaps), print a new chord to play
+    # repeat until exit program, Ctrl+Q
+    chord_file_access = open(CHORD_TEXT_FILE, 'r')
+    # chords = chord_file_access.split('\n')
+    chords = chord_file_access.read().splitlines()
+    print(" running from the chord list of : ")
+    print("         ", chords)
+    while ( True):
+        sleep(time_gaps)
+        if wait_for_input: # wait for user input before generating next chord
+            input("Button press when ready: ")
+        rand_chord = random.choice(chords)
+        print( rand_chord, " chord" )
+        
