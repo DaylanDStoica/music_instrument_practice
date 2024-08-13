@@ -48,14 +48,18 @@ class MyWindowClass:
         chord_file_access = open(CHORD_TEXT_FILE, 'r')
         # chords = chord_file_access.split('\n')
         chords = chord_file_access.read().splitlines()
-        print(" running from the chord list of : ")
-        print("         ", chords)
+        # print(" running from the chord list of : ")
+        # print("         ", chords)
+        tk.ttk.Label(self.window, text = " running from the chord list of :        %s" % chords).grid( column=0, row = 0)
+
         while ( True):
             sleep(time_gaps)
             if wait_for_input: # wait for user input before generating next chord
-                input("Button press when ready: ")
+                # input("Button press when ready: ")
+                tk.ttk.Button (self.window, text="Next chord").grid(column=3, row=0)
             rand_chord = random.choice(chords)
-            print( rand_chord, " chord" )
+            # print( rand_chord, " chord" )
+            tk.ttk.Label(self.window, text = "%s  chord" % rand_chord)
 
         # TODO: change command line prints to text within the GUI window
         self.window.mainloop()

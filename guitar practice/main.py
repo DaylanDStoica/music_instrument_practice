@@ -19,6 +19,7 @@ def main():
     MyWindow = gui.MyWindowClass()
     MyWindow.create_window()
     MyWindow.display_chord()
+    MyWindow.gui_provided_chord_holds()
 
 
 main()
