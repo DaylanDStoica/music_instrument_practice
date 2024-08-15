@@ -27,10 +27,15 @@ class MyWindowClass:
         self.window_offsetx = window_offsetx
         self.window_offsety = window_offsety
         self.title = title
+        self.chord_label = ""
+        
         
 
-    def next_chord(self):
-        pass
+    def next_chord(self, chord_list):
+        # for the next button on the gui window, 
+        # display the next randomly chosen chord in the window
+        chord_choice = random.choice(chord_list)
+        self.chord_label = chord_choice
 
     def create_window(self):
         # window = tk.Tk()
@@ -47,53 +52,58 @@ class MyWindowClass:
         frame = tk.Frame(root)
         frame.grid()
 
-        tk.Button(frame, text="Next chord", command=self.next_chord()).grid(column=0, row=0)
+        filename = open(CHORD_TEXT_FILE, 'r')
+        chords = filename.read().splitlines()
+        
+        tk.Button(frame, text="Next chord", command=self.next_chord(chords)).grid(column=0, row=0)
         tk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0)
+        tk.Label(frame, text = self.chord_label).grid(column=1, row=3)
 
 
         self.window = root
 
-        root.mainloop() # keep this line at the bottom
+        # root.mainloop() # keep this line at the bottom
+        # TODO: find place for mainloop, to allow 'next chord' button to change visible text
         
         
 
-    def gui_provided_chord_holds ( self, time_gaps = 1.0 , wait_for_input = False):
-        # every X seconds (time_gaps), print a new chord to play
-        # repeat until exit program, Ctrl+Q
-        chord_file_access = open(CHORD_TEXT_FILE, 'r')
-        # chords = chord_file_access.split('\n')
-        chords = chord_file_access.read().splitlines()
-        # print(" running from the chord list of : ")
-        # print("         ", chords)
+    # def gui_provided_chord_holds ( self, time_gaps = 1.0 , wait_for_input = False):
+    #     # every X seconds (time_gaps), print a new chord to play
+    #     # repeat until exit program, Ctrl+Q
+    #     chord_file_access = open(CHORD_TEXT_FILE, 'r')
+    #     # chords = chord_file_access.split('\n')
+    #     chords = chord_file_access.read().splitlines()
+    #     # print(" running from the chord list of : ")
+    #     # print("         ", chords)
 
-        # create the window
-        self.create_window()
-        # set the grid for displaying the window
-        frame = tk.Frame(self.window, padding = 10)
-        frame.grid()
-        tk.ttk.Label(frame, text = " running from the chord list of :        %s" % chords).grid( column=0, row = 0)
+    #     # create the window
+    #     self.create_window()
+    #     # set the grid for displaying the window
+    #     frame = tk.Frame(self.window, padding = 10)
+    #     frame.grid()
+    #     tk.ttk.Label(frame, text = " running from the chord list of :        %s" % chords).grid( column=0, row = 0)
 
-        while ( True):
-            sleep(time_gaps)
-            if wait_for_input: # wait for user input before generating next chord
-                # input("Button press when ready: ")
-                tk.ttk.Button (frame, text="Next chord").grid(column=3, row=0)
-            rand_chord = random.choice(chords)
-            # print( rand_chord, " chord" )
-            tk.ttk.Label(self.window, text = "%s  chord" % rand_chord)
+    #     while ( True):
+    #         sleep(time_gaps)
+    #         if wait_for_input: # wait for user input before generating next chord
+    #             # input("Button press when ready: ")
+    #             tk.ttk.Button (frame, text="Next chord").grid(column=3, row=0)
+    #         rand_chord = random.choice(chords)
+    #         # print( rand_chord, " chord" )
+    #         tk.ttk.Label(self.window, text = "%s  chord" % rand_chord)
 
-            self.window.mainloop()
-        # TODO: change command line prints to text within the GUI window
-        # self.window.mainloop()
+    #         self.window.mainloop()
+    #     # TODO: change command line prints to text within the GUI window
+    #     # self.window.mainloop()
 
-    def learning_gui_window(self):
-        # for learning how the gui interactions work, comment out while testing
-        root = tk.Tk()
-        root.title("Hello world!")
-        root.geometry("400x400")
-        # frm = tk.Frame(root, padding = 10)
-        frm = tk.Frame(root)
-        frm.grid()
-        tk.Label(frm, text="Hello World!").grid(column=0, row=0)
-        tk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-        root.mainloop() 
+    # def learning_gui_window(self):
+    #     # for learning how the gui interactions work, comment out while testing
+    #     root = tk.Tk()
+    #     root.title("Hello world!")
+    #     root.geometry("400x400")
+    #     # frm = tk.Frame(root, padding = 10)
+    #     frm = tk.Frame(root)
+    #     frm.grid()
+    #     tk.Label(frm, text="Hello World!").grid(column=0, row=0)
+    #     tk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
+    #     root.mainloop() 
