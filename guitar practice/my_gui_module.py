@@ -226,7 +226,13 @@ class MyNiceWindowClass:
         # acts as a server shutoff
         ui.button("shutdown", on_click=app.shutdown)
 
-        ui.run(reload=False)
+        # TODO: develop boolean tracking for the toggle switch
+        auto_rotation_bool = ui.toggle(["Auto request", "Click for new request"])
+        # Auto request, on: generate new message every X seconds
+        # Click for new request, on: wait for "Next Chord" button press to display new message
+        # both off: show nothing until a choice is made.
+
+        ui.run(reload=False) # reload=False to allow app shutdown
 
 
 from PySide6 import QtGui
