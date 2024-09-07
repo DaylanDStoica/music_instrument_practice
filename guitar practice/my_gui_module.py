@@ -10,9 +10,21 @@ import random
 
 CHORD_TEXT_FILE = "guitar_chords_tab.txt"
 
-        
+def get_random_chord():
+    filename = open(CHORD_TEXT_FILE, 'r')
+    chords_list = filename.read().splitlines()
+    chord_choice = random(chords_list)
+
+    filename.close()
+
+    return chord_choice
+
+
+
+
 current_chord_label = ""
-chord_label = tk.Tk
+
+
 
 class MyWindowClass:
     def __init__( self,
@@ -196,7 +208,13 @@ class MyWindowClass:
         return root
     
 
-
+from nicegui import ui
 class MyNiceWindowClass:
     def __init__(self):
         print("nice window made")
+    def create_window(self):
+        ui.label("Instrument practice > Guitar Practice > chords")
+
+        next_button = ui.button("Next Chord")
+
+        ui.run()

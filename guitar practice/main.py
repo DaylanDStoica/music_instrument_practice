@@ -42,9 +42,16 @@ def main():
 
 
 #this main will use the MyNiceWindow class, using NiceGUI
-from nicegui import ui
+# from nicegui import ui
+# import my_gui_module as gui
 def main2():
-    ui.label("hello world")
-    ui.run()
+    # # ui.label("hello world")
+
+    # ui.label("guitar practice : chords")
+
+    # ui.run()
+    
+    my_nice_window = gui.MyNiceWindowClass()
+    my_nice_window.create_window()
 
 main2()
