@@ -10,10 +10,11 @@ import random
 
 CHORD_TEXT_FILE = "guitar_chords_tab.txt"
 
+# return the string of a chord and fret counts, randomly chosen from the list of chords
 def get_random_chord():
     filename = open(CHORD_TEXT_FILE, 'r')
     chords_list = filename.read().splitlines()
-    chord_choice = random(chords_list)
+    chord_choice = random.choice(chords_list)
 
     filename.close()
 
@@ -215,6 +216,19 @@ class MyNiceWindowClass:
     def create_window(self):
         ui.label("Instrument practice > Guitar Practice > chords")
 
-        next_button = ui.button("Next Chord")
+        # using the notification attribute to create refreshing chord requests
+        new_chord_string = get_random_chord()
+        next_button = ui.button("Next Chord", on_click=lambda: 
+                                # ui.notify(new_chord_string) )
+                                ui.notify(get_random_chord()) )
 
         ui.run()
+
+
+from PySide6 import QtGui
+class MyQtWindowClass:
+    def __init__(self):
+        print("creating a qt window")
+
+    def create_window(self):
+        pass
