@@ -11,7 +11,8 @@ import random
 CHORD_TEXT_FILE = "guitar_chords_tab.txt"
 
         
-
+current_chord_label = ""
+chord_label = tk.Tk
 
 class MyWindowClass:
     def __init__( self,
@@ -35,11 +36,18 @@ class MyWindowClass:
         # for the next button on the gui window, 
         # display the next randomly chosen chord in the window
         chord_choice = random.choice(chord_list)
+
+        global current_chord_label
+        current_chord_label = chord_choice
         self.chord_label_text = chord_choice
         # self.window_frame.
         # tk.Label(self.window_frame, text = self.chord_label).grid(column=1, row=3)
         # self.chord_label.config(text = self.chord_label_text)
+
         self.chord_label.config(text = self.chord_label_text)
+        # self.chord_label.config(text = current_chord_label)
+        # return chord_choice
+        self.window.mainloop()
 
 
     def next_chord2(self):
@@ -50,7 +58,14 @@ class MyWindowClass:
         chord_choice = random.choice(chords)
         self.chord_label_text = chord_choice
 
-        self.chord_label.config(text = self.chord_label_text)
+        # return chord_choice
+        global current_chord_label 
+        current_chord_label= chord_choice
+        # self.chord_label.config(text = self.chord_label_text)
+        self.chord_label = current_chord_label
+        print("new chord selected and inputted: " + chord_choice)
+        filename.close()
+        return chord_choice
 
     def create_window(self):
         # window = tk.Tk()
@@ -75,11 +90,20 @@ class MyWindowClass:
         chords = filename.read().splitlines()
         
         tk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0)
-        chord_label = tk.Label(frame, text = self.chord_label_text).grid(column=1, row=3)
+        chord_label = tk.Label(frame, text = self.chord_label_text)
+        chord_label.grid(column=1, row=3)
         self.chord_label = chord_label
         
 
-        tk.Button(frame, text="Next chord", command=self.next_chord(chords)).grid(column=0, row=0)
+        next_button = tk.Button(frame, text="Next chord", 
+                                # command=self.next_chord(chords)).grid(column=0, row=0)
+        )
+        # next_button.config(command=self.next_chord(chords))
+        next_button.config(
+            command=chord_label.config(text = self.next_chord2()))
+        next_button.grid(row=1,column=1)
+
+
         # chord_label.config(text = self.chord_label_text)
 
         
@@ -166,4 +190,5 @@ class MyWindowClass:
         quit_button.pack()
         chord_label.pack()
 
-        root.mainloop()
+        # root.mainloop()
+        return root
