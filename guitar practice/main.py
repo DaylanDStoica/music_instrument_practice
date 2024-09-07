@@ -38,6 +38,13 @@ def main():
     # window_body.mainloop()
     print("create window")
 
-main()
+# main()
 
 
+#this main will use the MyNiceWindow class, using NiceGUI
+from nicegui import ui
+def main2():
+    ui.label("hello world")
+    ui.run()
+
+main2()
