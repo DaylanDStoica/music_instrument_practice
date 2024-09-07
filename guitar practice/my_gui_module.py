@@ -103,6 +103,7 @@ class MyWindowClass:
             command=chord_label.config(text = self.next_chord2()))
         next_button.grid(row=1,column=1)
 
+        junk_button = tk.Button(frame, text="print junk", command=print(" junk button pressed")).grid(row=4)
 
         # chord_label.config(text = self.chord_label_text)
 
@@ -160,6 +161,7 @@ class MyWindowClass:
     #     root.mainloop() 
 
     def create_window2(self):
+
         root = tk.Tk()
         root.minsize(200, 200)
         root.maxsize(500,500)
@@ -192,3 +194,9 @@ class MyWindowClass:
 
         # root.mainloop()
         return root
+    
+
+
+class MyNiceWindowClass:
+    def __init__(self):
+        print("nice window made")
