@@ -209,7 +209,7 @@ class MyWindowClass:
         return root
     
 
-from nicegui import ui
+from nicegui import ui, app
 class MyNiceWindowClass:
     def __init__(self):
         print("nice window made")
@@ -221,8 +221,12 @@ class MyNiceWindowClass:
         next_button = ui.button("Next Chord", on_click=lambda: 
                                 # ui.notify(new_chord_string) )
                                 ui.notify(get_random_chord()) )
+        
+        #shutdown button, shuts off connection to browser page
+        # acts as a server shutoff
+        ui.button("shutdown", on_click=app.shutdown)
 
-        ui.run()
+        ui.run(reload=False)
 
 
 from PySide6 import QtGui
