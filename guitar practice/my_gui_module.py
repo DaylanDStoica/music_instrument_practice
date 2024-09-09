@@ -227,7 +227,7 @@ class MyNiceWindowClass:
         ui.button("shutdown", on_click=app.shutdown)
 
         # TODO: develop boolean tracking for the toggle switch
-        auto_rotation_bool = ui.toggle(["Auto request", "Click for new request"])
+        auto_rotation_bool = ui.toggle({1: "Auto request" , 0: "Click for new request" }) # 1 = True for auto-rotate,0 = False for auto-rotate, manual rotation
         # Auto request, on: generate new message every X seconds
         # Click for new request, on: wait for "Next Chord" button press to display new message
         # both off: show nothing until a choice is made.
