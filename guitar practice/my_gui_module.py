@@ -4,7 +4,7 @@
 
 from nicegui import ui, app
 
-import guitar_chord_practice as gc_prac
+# import guitar_chord_practice as gc_prac
 from time import sleep
 import random
 
@@ -24,6 +24,10 @@ def get_random_chord():
 class MyNiceWindowClass:
     def __init__(self):
         print("nice window made")
+        self.auto_rotation_bool = False # variable for choose the method of new chord display.
+        # False: user must manually press button to call for next Chord
+        # True: new chord will be presented automatically after set seconds
+        self.chord_time = 3
     def create_window(self):
         ui.label("Instrument practice > Guitar Practice > chords")
 
@@ -35,15 +39,17 @@ class MyNiceWindowClass:
         
         #shutdown button, shuts off connection to browser page
         # acts as a server shutoff
-        ui.button("shutdown", on_click=app.shutdown)
+        ui.button("end connection", on_click=app.shutdown)
 
         # TODO: develop boolean tracking for the toggle switch
         auto_rotation_bool = ui.toggle({1: "Auto request" , 0: "Click for new request" }) # 1 = True for auto-rotate,0 = False for auto-rotate, manual rotation
+        self.auto_rotation_bool = auto_rotation_bool
+        print(self.auto_rotation_bool)
         # Auto request, on: generate new message every X seconds
         # Click for new request, on: wait for "Next Chord" button press to display new message
         # both off: show nothing until a choice is made.
 
-        ui.run(reload=False) # reload=False to allow app shutdown
+        ui.run(reload=False) # reload=False to allow app program server shutdown
 
 
 from PySide6 import QtGui
