@@ -28,6 +28,16 @@ class MyNiceWindowClass:
         # False: user must manually press button to call for next Chord
         # True: new chord will be presented automatically after set seconds
         self.chord_time = 3
+
+    def auto_run_chords(self):
+        # to be run when the AutoRequest toggle is set to on
+        # every x seconds, send up a message of a random chord
+        
+        # create a thread for handling the time passing and chord calling
+        pass
+
+    def set_chord_time(self, new_timer):
+        self.chord_time = new_timer
     def create_window(self):
         ui.label("Instrument practice > Guitar Practice > chords")
 
