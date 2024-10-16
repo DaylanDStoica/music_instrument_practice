@@ -26,6 +26,7 @@ def main2():
     
     my_nice_window = gui.MyNiceWindowClass()
     my_nice_window.create_window()
+    my_nice_window.window_loop()
 
 main2()
 

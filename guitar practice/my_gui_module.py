@@ -28,6 +28,7 @@ class MyNiceWindowClass:
         # False: user must manually press button to call for next Chord
         # True: new chord will be presented automatically after set seconds
         self.chord_time = 3
+        self.rem_chord_timer = self.chord_time # the "remaining timer for new chord", as part of the automated chord display feature
 
     def auto_run_chords(self):
         # to be run when the AutoRequest toggle is set to on
@@ -38,6 +39,7 @@ class MyNiceWindowClass:
 
     def set_chord_time(self, new_timer):
         self.chord_time = new_timer
+        self.rem_chord_timer = self.chord_time # set the remaining timer to the new timer setting
     def create_window(self):
         ui.label("Instrument practice > Guitar Practice > chords")
 
@@ -61,11 +63,32 @@ class MyNiceWindowClass:
 
         ui.run(reload=False) # reload=False to allow app program server shutdown
 
+    def window_loop(self):
+        # given the values provided from the GUI, perform the tasks
+        # this function to be called at the start of each process loop
 
-from PySide6 import QtGui
-class MyQtWindowClass:
-    def __init__(self):
-        print("creating a qt window")
+        # automatically call new chords, after a set timer
+        if (self.auto_rotation_bool == 0):
+            pass
+        elif( self.auto_rotation_bool == 1):
+            if ( self.rem_chord_timer == 0): # timer has reached zero, time to act
+                # reset remaining timer to default
+                self.rem_chord_timer = self.chord_time + 1
+                # perform the task
+                ui.notify( get_random_chord())
+            self.rem_chord_timer -= 1 # decrease the timer by 1 unit
 
-    def create_window(self):
-        pass
+
+
+
+        # 
+
+
+# Alternative GUI library
+# from PySide6 import QtGui
+# class MyQtWindowClass:
+#     def __init__(self):
+#         print("creating a qt window")
+
+#     def create_window(self):
+#         pass
