@@ -30,10 +30,10 @@ def main2():
 
 main2()
 
-#this main will use QT gui, 
-def main3():
-    my_qt_window = gui.MyQtWindowClass()
-    my_qt_window.create_window()
+# #this main will use QT gui, 
+# def main3():
+#     my_qt_window = gui.MyQtWindowClass()
+#     my_qt_window.create_window()
 
 
-# main3()
+# main3()pyth

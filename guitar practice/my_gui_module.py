@@ -27,7 +27,7 @@ class MyNiceWindowClass:
         self.auto_rotation_bool = False # variable for choose the method of new chord display.
         # False: user must manually press button to call for next Chord
         # True: new chord will be presented automatically after set seconds
-        self.chord_time = 3
+        self.chord_time = 1.0
         self.rem_chord_timer = self.chord_time # the "remaining timer for new chord", as part of the automated chord display feature
 
     def auto_run_chords(self):
@@ -61,22 +61,32 @@ class MyNiceWindowClass:
         # Click for new request, on: wait for "Next Chord" button press to display new message
         # both off: show nothing until a choice is made.
 
+        # while(True):
+        # self.window_loop()
+
         ui.run(reload=False) # reload=False to allow app program server shutdown
 
-    def window_loop(self):
+    async def window_loop(self):
         # given the values provided from the GUI, perform the tasks
         # this function to be called at the start of each process loop
 
-        # automatically call new chords, after a set timer
-        if (self.auto_rotation_bool == 0):
-            pass
-        elif( self.auto_rotation_bool == 1):
-            if ( self.rem_chord_timer == 0): # timer has reached zero, time to act
-                # reset remaining timer to default
-                self.rem_chord_timer = self.chord_time + 1
-                # perform the task
-                ui.notify( get_random_chord())
-            self.rem_chord_timer -= 1 # decrease the timer by 1 unit
+        # while( True):
+            ui.notify("enter window loop")
+            sleep(1.00)
+            # automatically call new chords, after a set timer
+            if (self.auto_rotation_bool == 0):
+                ui.notify("toggle auto OFF")
+                pass
+
+            # elif( self.auto_rotation_bool == 1):
+            else:
+                ui.notification("toggle auto on")
+                if ( self.rem_chord_timer <= 0): # timer has reached zero, time to act
+                    # reset remaining timer to default
+                    self.rem_chord_timer = self.chord_time + 1
+                    # perform the task
+                    ui.notify( get_random_chord())
+                self.rem_chord_timer -= 1 # decrease the timer by 1 unit
 
 
 
